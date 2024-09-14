@@ -1,0 +1,60 @@
+import java.util.*;
+public class CompliteNum {
+
+	public static int [] point = new int [12];
+//	public static 
+	 
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int i,j,n,m,k,tmp;
+		
+		Scanner input = new Scanner(System.in);
+		n = input.nextInt();
+		m = input.nextInt();
+		k = 0;
+		point[0]=(int) Math.sqrt(m);
+		make(k,m);
+		
+		int [] a = new int[n+1];
+		for(i=1;i<=n;i++)
+			a[i]=input.nextInt();
+		for(i=1;i<n;i++)
+			for(j=i;j<=n;j++)
+				if(a[i]<a[j])
+				{
+					tmp = a[j];
+					a[j] = a[i];
+					a[i] = tmp;
+				}
+		System.out.printf("*****\n");
+		for(i=1;i<=n;i++)
+			System.out.printf("%d ",a[i]);
+	}
+	
+	
+	
+	
+	
+	
+	public static void make(int n,int x)
+	{
+		if(n<11) {
+		if(x==0)
+		{
+			for(int i=1 ; i<=n ; i++)
+				System.out.printf("%d,", point[i]);
+		System.out.printf("\n");
+		}
+		else 
+		{
+			for(int m=(int ) Math.sqrt(x);m>=1;m--)
+            if (point[n]>=m)			/////////
+			{
+				point[n+1]=m;
+				make(n+1,x-m*m);
+			}
+		}
+		}	
+	}
+}
